@@ -1,13 +1,25 @@
 package com.gameTime.GamePrefs.demo.Models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-public abstract class GamePrefs {
+
+@MappedSuperclass
+public class GamePrefs {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    @GeneratedValue
+    private Long id;
+    private String gameTitle;
 
+
+
+    public GamePrefs() {
+    }
+    public String getGameTitle() {
+        return gameTitle;
+    }
+
+    public void setGameTitle(String gameTitle) {
+        this.gameTitle = gameTitle;
+    }
 
 }

@@ -1,21 +1,33 @@
 package com.gameTime.GamePrefs.demo.Models;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "rustprefs")
-
-public class RustPrefs extends GamePrefs{
-
+@Table(name = "eftprefs")
+public class EFTPrefs extends GamePrefs{
     private String playStyle;
     private Integer userPlayingHours;
     private Integer minPlayingHours;
     private Integer maxPlayingHours;
     private String idealGroupSize;
-    private String idealServerType;
+    private String favMap;
+
+    @OneToOne(mappedBy = "eftPrefs")
+    private User user;
 
 
+    public EFTPrefs() {
+    }
+
+    public String getPlayStyle() {
+        return playStyle;
+    }
+
+    public void setPlayStyle(String playStyle) {
+        this.playStyle = playStyle;
+    }
 
     public Integer getUserPlayingHours() {
         return userPlayingHours;
@@ -49,23 +61,16 @@ public class RustPrefs extends GamePrefs{
         this.idealGroupSize = idealGroupSize;
     }
 
-    public String getIdealServerType() {
-        return idealServerType;
+    public String getFavMap() {
+        return favMap;
     }
 
-    public void setIdealServerType(String idealServerType) {
-        this.idealServerType = idealServerType;
-    }
-    public String getPlayStyle() {
-        return playStyle;
-    }
-
-    public void setPlayStyle(String playStyle) {
-        this.playStyle = playStyle;
+    public void setFavMap(String favMap) {
+        this.favMap = favMap;
     }
     @Override
     public String toString(){
-        return "Game Title " + super.getGameTitle() + "Play Style " + playStyle + "Group Size " + idealGroupSize
-                + "Ideal Server Type" + idealServerType;
+        return "Game Title " + super.getGameTitle() + "Play Style " + playStyle + "Fav Map "
+                + favMap + "Group Size " + idealGroupSize;
     }
 }
